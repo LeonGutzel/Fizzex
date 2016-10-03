@@ -1,4 +1,3 @@
-
 ////////////////////////////////////////////////////////////
 //
 // Fizzex - The Simple Physics Library
@@ -32,7 +31,8 @@
 namespace fzx
 {
 
-/** A class that represents a 2-dimensional, real vector.
+/**
+ * A class that represents a 2-dimensional, real vector.
  *
  * Uses a template paramter to represent the real components.
  * Overloads the traditional mathematical operators used for vectors
@@ -97,9 +97,9 @@ struct Vec2
 	 * @param s The scale that will be applied to this vector.
 	 * @return A new vector that is this vector scaled by the parameter.
 	 */
-	Vec2 operator*(T s)
+	Vec2<T> operator*(T s)
 	{
-		return Vec2(this->x * s, this->y * s);
+		return Vec2<T>(this->x * s, this->y * s);
 	}
 
 	/**
@@ -111,9 +111,9 @@ struct Vec2
 	 * exception will be thrown.
 	 * @return A new vector that is this vector inversly scaled by the parameter.
 	 */
-	Vec2 operator/(T s)
+	Vec2<T> operator/(T s)
 	{
-		return Vec2(this->x / s, this->y / s);
+		return Vec2<T>(this->x / s, this->y / s);
 	}
 
 	/**
@@ -126,7 +126,7 @@ struct Vec2
 	 * instance.
 	 * @return A reference to this instance.
 	 */
-	Vec2& operator+=(Vec2 &vector)
+	Vec2<T>& operator+=(Vec2<T> &vector)
 	{
 		this->x += vector.x;
 		this->y += vector.y;
@@ -143,7 +143,7 @@ struct Vec2
 	 * this instance.
 	 * @return A reference to this instance.
 	 */
-	Vec2& operator-=(Vec2 &vector)
+	Vec2<T>& operator-=(Vec2<T> &vector)
 	{
 		this->x -= vector.x;
 		this->y -= vector.y;
@@ -158,7 +158,7 @@ struct Vec2
 	 * @param s The real that will scale this vector.
 	 * @return A reference to this instance.
 	 */
-	Vec2& operator*=(T s)
+	Vec2<T>& operator*=(T s)
 	{
 		this->x *= s;
 		this->y *= s;
@@ -173,7 +173,7 @@ struct Vec2
 	 * @param s The real that will inversly scale this vector.
 	 * @return A reference to this instance.
 	 */
-	Vec2& operator/=(T s)
+	Vec2<T>& operator/=(T s)
 	{
 		this->x /= s;
 		this->y /= s;
@@ -189,7 +189,7 @@ struct Vec2
 	 * instance.
 	 * @return A real representing the dot product.
 	 */
-	T operator*(Vec2 &vector)
+	T operator*(Vec2<T> &vector)
 	{
 		return this->x * vector.x + this->y * vector->y;
 	}
@@ -206,7 +206,7 @@ struct Vec2
 	 * instance.
 	 * @return The real that represents the cross product between the two.
 	 */
-	T operator%(Vec2 &vector)
+	T operator%(Vec2<T> &vector)
 	{
 		return this->x * vector.y - vector.x * this->y;
 	}
