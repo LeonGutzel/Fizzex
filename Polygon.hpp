@@ -64,7 +64,7 @@ public:
    Polygon();
 
    //The rest of the methods are overrides. Documentation is inherited.
-   Shape::BoundingBox getBoundingBox();
+   Shape::BoundingBox getBoundingBox(Transform& transform);
    float getRadius();
    float getArea();
    Vec2f getSupport(Vec2f& direction, Transform& transform);
