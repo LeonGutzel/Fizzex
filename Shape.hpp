@@ -23,8 +23,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SHAPE_HPP_
-#define SHAPE_HPP_
+#ifndef FZX_SHAPE_HPP_
+#define FZX_SHAPE_HPP_
 
 #include "Transform.hpp"
 #include "Vec2.hpp"
@@ -100,4 +100,4 @@ public:
 
 }
 
-#endif /* SHAPE_HPP_ */
+#endif /* FZX_SHAPE_HPP_ */

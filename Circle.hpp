@@ -23,8 +23,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef CIRCLE_HPP_
-#define CIRCLE_HPP_
+#ifndef FZX_CIRCLE_HPP_
+#define FZX_CIRCLE_HPP_
 
 #include "Shape.hpp"
 
@@ -63,4 +63,4 @@ public:
 
 }
 
-#endif /*CIRCLE_HPP_*/
+#endif /*FZX_CIRCLE_HPP_*/

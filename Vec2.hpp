@@ -23,8 +23,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef VEC2_HPP_
-#define VEC2_HPP_
+#ifndef FZX_VEC2_HPP_
+#define FZX_VEC2_HPP_
 
 #include <cmath>
 
@@ -268,4 +268,4 @@ typedef Vec2<double> Vec2d;
 
 }
 
-#endif /* VEC2_HPP_ */
+#endif /* FZX_VEC2_HPP_ */

@@ -23,8 +23,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef MAT22_HPP_
-#define MAT22_HPP_
+#ifndef FZX_MAT22_HPP_
+#define FZX_MAT22_HPP_
 
 #include "Vec2.hpp"
 
@@ -263,4 +263,4 @@ typedef Mat22<double> Mat22d;
 
 }
 
-#endif /* MAT22_HPP_ */
+#endif /* FZX_MAT22_HPP_ */

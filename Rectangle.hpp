@@ -23,8 +23,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef RECTANGLE_HPP_
-#define RECTANGLE_HPP_
+#ifndef FZX_RECTANGLE_HPP_
+#define FZX_RECTANGLE_HPP_
 
 #include "Shape.hpp"
 
@@ -65,4 +65,4 @@ public:
 
 }
 
-#endif /*RECTANGLE_HPP_*/
+#endif /*FZX_RECTANGLE_HPP_*/

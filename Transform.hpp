@@ -23,8 +23,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef TRANSFORM_HPP_
-#define TRANSFORM_HPP_
+#ifndef FZX_TRANSFORM_HPP_
+#define FZX_TRANSFORM_HPP_
 
 #include "Mat22.hpp"
 #include "Vec2.hpp"
@@ -49,7 +49,7 @@ public:
     *
     * The angle and translation is set to zero, and the scale is set to 1.
     */
-   Transform() : mRotationMatrix(0), mAngle(0), mTranslation(0, 0), mScale(1) {}
+   Transform() : mRotationMatrix(0), mTranslation(0, 0), mAngle(0), mScale(1) {}
 
    /**
     * Applies this transformation to a vector.
@@ -131,9 +131,9 @@ public:
     * @param translation A Vec2f that is the new value of this Transform's
     * translation.
     */
-   void setTranslation(Vec2f translation);
+   void setTranslation(Vec2f& translation);
 };
 
 }
 
-#endif /*TRANSFORM_HPP_*/
+#endif /*FZX_TRANSFORM_HPP_*/
