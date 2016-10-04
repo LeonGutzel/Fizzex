@@ -21,9 +21,9 @@ float Circle::getArea()
    return 3.1415926f * mRadius * mRadius;
 }
 
-Vec2f Circle::getSupport(Vec2f& direction)
+Vec2f Circle::getSupport(Vec2f& direction, Transform& transform)
 {
-   return (direction / direction.getMagnitude()) * mRadius;
+   return (direction/direction.getMagnitude()) * mRadius * transform.getScale();
 }
 
 Shape::ShapeType Circle::getType()
