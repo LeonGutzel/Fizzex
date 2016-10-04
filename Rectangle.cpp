@@ -25,17 +25,13 @@
 
 #include "Rectangle.hpp"
 #include <cmath>
+#include <algorithm>
 
 namespace fzx
 {
 
 Rectangle::Rectangle(float width, float height) : mWidth(width), mHeight(height) {}
 Rectangle::Rectangle() : mWidth(1.0f), mHeight(1.0f) {}
-
-Vec2f Rectangle::getBoundingBox()
-{
-   return Vec2f(mWidth, mHeight);
-}
 
 float Rectangle::getRadius()
 {
@@ -48,15 +44,32 @@ float Rectangle::getArea()
    return mWidth * mHeight;
 }
 
+Shape::BoundingBox Rectangle::getBoundingBox(Transform& transform)
+{
+   Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
+   Vec2f lowerRight = Vec2f(mWidth / 2, -mHeight / 2);
+
+   //Apply the transform, but remove the translation so only rotation and scale is left.
+   upperRight = transform.apply(upperRight) - transform.getTranslation();
+   lowerRight = transform.apply(lowerRight) - transform.getTranslation();
+
+   float maximumX = std::max(std::abs(upperRight.x), std::abs(lowerRight.x));
+   float maximumY = std::max(std::abs(upperRight.y), std::abs(lowerRight.y));
+
+   Shape::BoundingBox boundary;
+   boundary.upperRight.set(maximumX, maximumY);
+   boundary.lowerLeft = boundary.upperRight * -1;
+   return boundary;
+}
 Vec2f Rectangle::getSupport(Vec2f& direction, Transform& transform)
 {
-   Vec2f upperRight, lowerRight;
-	upperRight.set(mWidth / 2, mHeight / 2);
-	lowerRight.set(mWidth / 2, -mHeight / 2);
+   Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
+   Vec2f lowerRight = Vec2f(mWidth / 2, -mHeight / 2);
 
    //Apply the transform, but remove the translation so only rotation and scale is left.
 	upperRight = transform.apply(upperRight) - transform.getTranslation();
 	lowerRight = transform.apply(lowerRight) - transform.getTranslation();
+
 	float dot1 = direction * upperRight;
 	float dot2 = direction * lowerRight;
 

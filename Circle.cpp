@@ -31,11 +31,6 @@ namespace fzx
 Circle::Circle(float radius) : mRadius(radius) {}
 Circle::Circle() : mRadius(1.0f) {}
 
-Vec2f Circle::getBoundingBox()
-{
-   return Vec2f(mRadius * 2, mRadius * 2);
-}
-
 float Circle::getRadius()
 {
    return mRadius;
@@ -46,6 +41,16 @@ float Circle::getArea()
    return 3.1415926f * mRadius * mRadius;
 }
 
+Shape::BoundingBox Circle::getBoundingBox(Transform& transform)
+{
+   Shape::BoundingBox boundary;
+   boundary.lowerLeft.set(-mRadius, -mRadius);
+   boundary.lowerLeft *= transform.getScale();
+   boundary.upperRight = boundary.lowerLeft * -1;
+   boundary.lowerLeft += transform.getTranslation();
+   boundary.upperRight += transform.getTranslation();
+   return boundary;
+}
 Vec2f Circle::getSupport(Vec2f& direction, Transform& transform)
 {
    return (direction/direction.getMagnitude()) * mRadius * transform.getScale();

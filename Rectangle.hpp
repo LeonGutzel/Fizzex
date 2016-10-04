@@ -56,9 +56,9 @@ public:
    Rectangle();
 
    //The rest of the methods are overrides. Documentation is inherited.
-   Vec2f getBoundingBox();
    float getRadius();
    float getArea();
+   BoundingBox getBoundingBox(Transform& transform);
    Vec2f getSupport(Vec2f& direction, Transform& transform);
    Shape::ShapeType getType();
 };

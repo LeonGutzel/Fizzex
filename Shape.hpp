@@ -46,20 +46,16 @@ public:
 	{
 		CIRCLE, RECTANGLE, POLYGON
 	};
+	/**
+	 * A struct that represents and axis-aligned bounding box.
+	 */
+	struct BoundingBox
+	{
+		Vec2f lowerLeft, upperRight;
+	};
 
 	//Destructor made virtual to allow subclasses to override it
 	virtual ~Shape(){};
-
-	/**
-	 * Returns an axis-aligned bound box that completely sorrounds the Shape.
-	 *
-	 * The box shares the same center as this Shape and it's dimensions are
-	 * stored in a Vec2f.
-	 *
-	 * @return A Vec2f with an x that represents the box's width and a y that
-	 * represents the box's y.
-	 */
-	virtual Vec2f getBoundingBox() = 0;
 
 	/**
 	 * Returns the radius of a circle that completely sorrounds this Shape.
@@ -76,6 +72,15 @@ public:
 	 * @return A float representing the area of the Shape.
 	 */
 	virtual float getArea() = 0;
+
+	/**
+	 * Returns an axis-aligned bound box that completely sorrounds the Shape.
+	 *
+	 * @param transform The Transform that the Shape undergoes before a
+	 * BoundingBox is generated.
+	 * @return A BoundingBox that completely sorrounds the shape.
+	 */
+	virtual BoundingBox getBoundingBox(Transform& transform) = 0;
 
 	/**
 	 * Returns the nearest vertex of the shape in the direction of the parameter.
