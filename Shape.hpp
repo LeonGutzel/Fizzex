@@ -46,9 +46,7 @@ public:
 	{
 		CIRCLE, RECTANGLE, POLYGON
 	};
-private:
-	Transform mTransform; ///< The transformation of the Shape.
-public:
+
 	//Destructor made virtual to allow subclasses to override it
 	virtual ~Shape(){};
 
@@ -89,13 +87,6 @@ public:
 	 * circumference with the direction of the parameter.
 	 */
 	virtual Vec2f getSupport(Vec2f& direction) = 0;
-
-	/**
-	 * Returns the Transform of the Shape.
-	 *
-	 * @return The Transform of the Shape.
-	 */
-	Transform& getTransform() {return mTransform;}
 
 	/**
 	 * Returns the ShapeType of the Shape.

@@ -31,6 +31,11 @@
 namespace fzx
 {
 
+/**
+ * Represents a shape who's edge is equidistant from a single point.
+ *
+ * Extends the shape class.
+ */
 class Circle : public Shape
 {
 private:
