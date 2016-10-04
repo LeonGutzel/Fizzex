@@ -191,7 +191,7 @@ struct Vec2
 	 */
 	T operator*(Vec2<T> &vector)
 	{
-		return this->x * vector.x + this->y * vector->y;
+		return this->x * vector.x + this->y * vector.y;
 	}
 
 	/**
