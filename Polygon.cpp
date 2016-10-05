@@ -62,7 +62,7 @@ float Polygon::getArea() const
    return area / 2;
 }
 
-float Polygon::getMomentPerMass() const
+float Polygon::getInertiaPerMass() const
 {
    float moment = 0;
 

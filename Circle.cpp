@@ -41,7 +41,7 @@ float Circle::getArea() const
    return 3.1415926f * mRadius * mRadius;
 }
 
-float Circle::getMomentPerMass() const
+float Circle::getInertiaPerMass() const
 {
    return mRadius * mRadius / 2;
 }

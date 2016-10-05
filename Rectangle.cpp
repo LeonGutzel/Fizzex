@@ -44,7 +44,7 @@ float Rectangle::getArea() const
    return mWidth * mHeight;
 }
 
-float Rectangle::getMomentPerMass() const
+float Rectangle::getInertiaPerMass() const
 {
    return (mWidth * mWidth + mHeight * mHeight) / 12;
 }

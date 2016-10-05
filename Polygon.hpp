@@ -66,7 +66,7 @@ public:
    //The rest of the methods are overrides. Documentation is inherited.
    float getRadius() const;
    float getArea() const;
-   float getMomentPerMass() const;
+   float getInertiaPerMass() const;
    Shape::BoundingBox getBoundingBox(const Transform& transform) const;
    Vec2f getSupport(const Vec2f& direction, const Transform& transform) const;
    Shape::ShapeType getType() const;

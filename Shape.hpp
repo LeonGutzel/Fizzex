@@ -79,7 +79,7 @@ public:
 	 *
 	 * @return A float representing the moment of inertia per mass.
 	 */
-	virtual float getMomentPerMass() const = 0;
+	virtual float getInertiaPerMass() const = 0;
 
 	/**
 	 * Returns an axis-aligned bound box that completely sorrounds the Shape.

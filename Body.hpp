@@ -1,9 +1,27 @@
-/*
- * Body.hpp
- *
- *  Created on: Oct 13, 2014
- *      Author: Leon
- */
+////////////////////////////////////////////////////////////
+//
+// Fizzex - The Simple Physics Library
+// Copyright (C) 2014-2016 Leonardo Gutierrez (leongflux@gmail.com)
+//
+// This software is provided 'as-is', without any express or implied warranty.
+// In no event will the authors be held liable for any damages arising from the
+// use of this software.
+//
+// Permission is granted to anyone to use this software for any purpose,
+// including commercial applications, and to alter it and redistribute it freely,
+// subject to the following restrictions:
+//
+// 1. The origin of this software must not be misrepresented;
+//    you must not claim that you wrote the original software.
+//    If you use this software in a product, an acknowledgment
+//    in the product documentation would be appreciated but is not required.
+//
+// 2. Altered source versions must be plainly marked as such,
+//    and must not be misrepresented as being the original software.
+//
+// 3. This notice may not be removed or altered from any source distribution.
+//
+////////////////////////////////////////////////////////////
 
 #ifndef BODY_HPP_
 #define BODY_HPP_
@@ -52,18 +70,19 @@ public:
 
 	void step(float dt);
 
-	void applyPush(Vec2f& push, ForceType forceType = IMPULSE);
+	void applyPush(const Vec2f& push, ForceType forceType = IMPULSE);
 	void applyTwist(float twist, ForceType forceType = IMPULSE);
-	Vec2f getPush(Vec2f& push, ForceType forceType = IMPULSE);
-	float getTwist(float twist, ForceType forceType = IMPULSE);
-	void setPush(Vec2f& push, ForceType forceType = IMPULSE);
+	Vec2f getPush(ForceType forceType = IMPULSE) const;
+	float getTwist(ForceType forceType = IMPULSE) const;
+	void setPush(const Vec2f& push, ForceType forceType = IMPULSE);
 	void setTwist(float twist, ForceType forceType = IMPULSE);
 
-	BodyType getType();
-	MassData getMassData();
-	Material getMaterial();
+	BodyType getType() const;
+	MassData getMassData() const;
+	Material getMaterial() const;
 	Transform& getTransform();
-	int getLayer();
+	Shape& getShape();
+	int getLayer() const;
 
 	void setBodyType(BodyType type);
 	void setMaterial(Material material);
