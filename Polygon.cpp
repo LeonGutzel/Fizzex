@@ -62,6 +62,43 @@ float Polygon::getArea()
    return area / 2;
 }
 
+float Polygon::getMomentPerMass()
+{
+   float moment = 0;
+
+   for (unsigned i = 1; i <= mVertices.size(); i++)
+   {
+      Vec2f vertexA, vertexB;
+      if (i == mVertices.size())
+      {
+         vertexA = mVertices[0];
+         vertexB = mVertices[mVertices.size() - 1];
+      }
+      else
+      {
+         vertexA = mVertices[i];
+         vertexB = mVertices[i-1];
+      }
+      float squareDistance = ((vertexA + vertexB) / 3).getMagnitudeSquared();
+      float area = (vertexA % vertexB) / 2;
+      float sideA = vertexA.getMagnitude();
+      float sideB = vertexB.getMagnitude();
+      float height = 2 * area / b;
+
+      float partialMoment = 0;
+      partialMoment += sideB * sideB * sideB * height;
+      partialMoment -= sideB * sideB * height * sideA;
+      partialMoment += sideB * height * sideA * sideA;
+      partialMoment += sideB * height * height * height;
+      partialMoment /= 36;
+      partialMoment += squareDistance;
+
+      moment += std::abs(partialMoment);
+   }
+
+   return moment;
+}
+
 Shape::BoundingBox Polygon::getBoundingBox(Transform& transform)
 {
    BoundingBox boundry;

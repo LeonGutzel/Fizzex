@@ -67,6 +67,7 @@ public:
    Shape::BoundingBox getBoundingBox(Transform& transform);
    float getRadius();
    float getArea();
+   float getMomentPerMass();
    Vec2f getSupport(Vec2f& direction, Transform& transform);
    Shape::ShapeType getType();
 };

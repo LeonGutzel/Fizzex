@@ -41,6 +41,11 @@ float Circle::getArea()
    return 3.1415926f * mRadius * mRadius;
 }
 
+float Circle::getMomentPerMass()
+{
+   return mRadius * mRadius / 2;
+}
+
 Shape::BoundingBox Circle::getBoundingBox(Transform& transform)
 {
    Shape::BoundingBox boundary;

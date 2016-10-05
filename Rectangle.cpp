@@ -44,6 +44,11 @@ float Rectangle::getArea()
    return mWidth * mHeight;
 }
 
+float Rectangle::getMomentPerMass()
+{
+   return (mWidth * mWidth + mHeight * mHeight) / 12;
+}
+
 Shape::BoundingBox Rectangle::getBoundingBox(Transform& transform)
 {
    Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
@@ -61,6 +66,7 @@ Shape::BoundingBox Rectangle::getBoundingBox(Transform& transform)
    boundary.lowerLeft = boundary.upperRight * -1;
    return boundary;
 }
+
 Vec2f Rectangle::getSupport(Vec2f& direction, Transform& transform)
 {
    Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);

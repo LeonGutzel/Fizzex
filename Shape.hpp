@@ -74,6 +74,14 @@ public:
 	virtual float getArea() = 0;
 
 	/**
+	 * Returns the moment of inertia per mass for a given Shape. It assumes that
+	 * the Shape will have a uniform density.
+	 *
+	 * @return A float representing the moment of inertia per mass.
+	 */
+	virtual float getMomentPerMass() = 0;
+
+	/**
 	 * Returns an axis-aligned bound box that completely sorrounds the Shape.
 	 *
 	 * @param transform The Transform that the Shape undergoes before a

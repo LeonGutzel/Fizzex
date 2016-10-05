@@ -8,9 +8,10 @@
 #ifndef BODY_HPP_
 #define BODY_HPP_
 
-#include <string>
+#include <vector>
 
 #include "Shape.hpp"
+#include "Circle.hpp"
 #include "Vec2.hpp"
 
 namespace fzx {
@@ -20,19 +21,19 @@ public:
 	enum BodyType
 	{
 		STATIC, KINEMATIC, DYNAMIC
-	}
+	};
 	enum ForceType
 	{
 		FORCE, IMPULSE, ACCELERATION, VELOCITY
-	}
+	};
 	struct Material
 	{
 		float density, staticFriction, kineticFriction, restitution;
-	}
+	};
 	struct MassData
 	{
 		float mass, inverseMass, inertia, inverseInertia;
-	}
+	};
 private:
 	BodyType mBodyType;
 	MassData mMassData;
@@ -44,6 +45,7 @@ private:
 	float mAngularVelocity;
 	float mTorque;
 	int mLayer;
+	void calculateMassData();
 public:
 	Body();
 	~Body();
@@ -52,11 +54,10 @@ public:
 
 	void applyPush(Vec2f& push, ForceType forceType = IMPULSE);
 	void applyTwist(float twist, ForceType forceType = IMPULSE);
-	void setPush(Vec2f& push, ForceType forceType = IMPULSE);
-	void setTwist(float twist, ForceType forceType = IMPULSE);
-
 	Vec2f getPush(Vec2f& push, ForceType forceType = IMPULSE);
 	float getTwist(float twist, ForceType forceType = IMPULSE);
+	void setPush(Vec2f& push, ForceType forceType = IMPULSE);
+	void setTwist(float twist, ForceType forceType = IMPULSE);
 
 	BodyType getType();
 	MassData getMassData();

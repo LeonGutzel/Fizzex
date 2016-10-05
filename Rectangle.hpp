@@ -58,6 +58,7 @@ public:
    //The rest of the methods are overrides. Documentation is inherited.
    float getRadius();
    float getArea();
+   float getMomentPerMass();
    BoundingBox getBoundingBox(Transform& transform);
    Vec2f getSupport(Vec2f& direction, Transform& transform);
    Shape::ShapeType getType();
