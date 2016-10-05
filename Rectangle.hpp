@@ -55,10 +55,22 @@ public:
     */
    Rectangle();
 
+   /**
+    * Get the width of the Rectangle
+    *
+    * @return A float representing the width of the Rectangle
+    */
+   float getWidth() const;
+
+   /**
+    * Get the height of the Rectangle
+    *
+    * @return A float representing the height of the Rectangle.
+    */
+   float getHeight() const;
+
    //The rest of the methods are overrides. Documentation is inherited.
    float getRadius() const;
-   float getWidth() const;
-   float getHeight() const;
    float getArea() const;
    float getInertiaPerMass() const;
    BoundingBox getBoundingBox(const Transform& transform) const;

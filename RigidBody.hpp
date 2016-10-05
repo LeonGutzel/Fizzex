@@ -112,6 +112,12 @@ public:
 	 * It is on layer 0.
 	 */
 	RigidBody();
+
+	/**
+	 * Destroys the RigidBody.
+	 *
+	 * Deletes the Shape memeber.
+	 */
 	~RigidBody();
 
 	void step(float dt);

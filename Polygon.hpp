@@ -63,6 +63,21 @@ public:
     */
    Polygon();
 
+   /**
+    * Returns the number of vertices this Polygon has.
+    *
+    * @return An unsigned integer representing the number of vertices in this Polygon.
+    */
+   unsigned getNumberOfVertices() const;
+
+   /**
+    * A specific vertic in the Polygon.
+    *
+    * @param  index The index of the vertix desired.
+    * @return A Vec2f that is the desired vertix of the Polygon.
+    */
+   Vec2f getVertix(unsigned int index) const;
+
    //The rest of the methods are overrides. Documentation is inherited.
    float getRadius() const;
    float getArea() const;

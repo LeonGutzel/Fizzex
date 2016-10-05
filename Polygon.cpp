@@ -62,6 +62,16 @@ float Polygon::getArea() const
    return area / 2;
 }
 
+Vec2f Polygon::getVertix(unsigned int index) const
+{
+   return mVertices[index];
+}
+
+unsigned int Polygon::getNumberOfVertices() const
+{
+   return mVertices.size();
+}
+
 float Polygon::getInertiaPerMass() const
 {
    float moment = 0;
