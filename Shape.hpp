@@ -64,7 +64,7 @@ public:
 	 *
 	 * @return A float that is the radius of the sorrounding circle.
 	 */
-	virtual float getRadius() = 0;
+	virtual float getRadius() const = 0;
 
 	/**
 	 * Returns the area of the Shape.
