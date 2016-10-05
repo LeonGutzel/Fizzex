@@ -83,7 +83,7 @@ float Polygon::getMomentPerMass()
       float area = (vertexA % vertexB) / 2;
       float sideA = vertexA.getMagnitude();
       float sideB = vertexB.getMagnitude();
-      float height = 2 * area / b;
+      float height = 2 * area / sideB;
 
       float partialMoment = 0;
       partialMoment += sideB * sideB * sideB * height;
