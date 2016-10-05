@@ -27,12 +27,12 @@
 
 namespace fzx {
 
-Vec2f Transform::apply(Vec2f& vector)
+Vec2f Transform::apply(const Vec2f& vector) const
 {
    return mRotationMatrix * vector + mTranslation;
 }
 
-void Transform::translate(Vec2f& delta)
+void Transform::translate(const Vec2f& delta)
 {
    mTranslation += delta;
 }
@@ -42,7 +42,7 @@ void Transform::rotate(float delta)
    mRotationMatrix = Mat22f(mAngle);
 }
 
-Mat22f Transform::getRotationMatrix()
+Mat22f Transform::getRotationMatrix() const
 {
    return mRotationMatrix;
 }
@@ -52,7 +52,7 @@ Vec2f& Transform::getTranslation()
    return mTranslation;
 }
 
-float Transform::getRotation()
+float Transform::getRotation() const
 {
    return mAngle;
 }
@@ -63,7 +63,7 @@ void Transform::setRotation(float theta)
    mRotationMatrix = Mat22f(theta);
 }
 
-void Transform::setTranslation(Vec2f& translation)
+void Transform::setTranslation(const Vec2f& translation)
 {
    mTranslation = translation;
 }

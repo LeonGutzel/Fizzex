@@ -60,14 +60,14 @@ public:
     * @return A new vector that is the parameter vector transformed by this
     * Transform.
     */
-   Vec2f apply(Vec2f& vector);
+   Vec2f apply(const Vec2f& vector) const;
 
    /**
     * Translates the transformation to a new location.
     *
     * @param delta The Vec2f to translate by.
     */
-   void translate(Vec2f& delta);
+   void translate(const Vec2f& delta);
 
    /**
     * Rotates the transformation to a new angle.
@@ -81,7 +81,7 @@ public:
     *
     * @return A Mat22f that is the rotation matrix of this Transform's angle.
     */
-   Mat22f getRotationMatrix();
+   Mat22f getRotationMatrix() const;
 
    /**
     * Returns a Vec2f that is the translation of this Transform.
@@ -95,7 +95,7 @@ public:
     *
     * @return A float that is the angle this Transform is rotated by.
     */
-   float getRotation();
+   float getRotation() const;
 
    /**
     * Set's this Transform's angle to a specific value.
@@ -110,7 +110,7 @@ public:
     * @param translation A Vec2f that is the new value of this Transform's
     * translation.
     */
-   void setTranslation(Vec2f& translation);
+   void setTranslation(const Vec2f& translation);
 };
 
 }
