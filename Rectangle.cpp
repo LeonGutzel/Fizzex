@@ -33,23 +33,23 @@ namespace fzx
 Rectangle::Rectangle(float width, float height) : mWidth(width), mHeight(height) {}
 Rectangle::Rectangle() : mWidth(1.0f), mHeight(1.0f) {}
 
-float Rectangle::getRadius()
+float Rectangle::getRadius() const
 {
    //Pythagorean theorem for the diameter, then half for radius.
    return std::sqrt(mWidth * mWidth + mHeight * mHeight) / 2;
 }
 
-float Rectangle::getArea()
+float Rectangle::getArea() const
 {
    return mWidth * mHeight;
 }
 
-float Rectangle::getMomentPerMass()
+float Rectangle::getMomentPerMass() const
 {
    return (mWidth * mWidth + mHeight * mHeight) / 12;
 }
 
-Shape::BoundingBox Rectangle::getBoundingBox(Transform& transform)
+Shape::BoundingBox Rectangle::getBoundingBox(const Transform& transform) const
 {
    Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
    Vec2f lowerRight = Vec2f(mWidth / 2, -mHeight / 2);
@@ -67,7 +67,7 @@ Shape::BoundingBox Rectangle::getBoundingBox(Transform& transform)
    return boundary;
 }
 
-Vec2f Rectangle::getSupport(Vec2f& direction, Transform& transform)
+Vec2f Rectangle::getSupport(const Vec2f& direction, const Transform& transform) const
 {
    Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
    Vec2f lowerRight = Vec2f(mWidth / 2, -mHeight / 2);
@@ -92,7 +92,7 @@ Vec2f Rectangle::getSupport(Vec2f& direction, Transform& transform)
 	}
 }
 
-Shape::ShapeType Rectangle::getType()
+Shape::ShapeType Rectangle::getType() const
 {
    return Shape::RECTANGLE;
 }

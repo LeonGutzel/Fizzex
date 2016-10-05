@@ -31,22 +31,22 @@ namespace fzx
 Circle::Circle(float radius) : mRadius(radius) {}
 Circle::Circle() : mRadius(1.0f) {}
 
-float Circle::getRadius()
+float Circle::getRadius() const
 {
    return mRadius;
 }
 
-float Circle::getArea()
+float Circle::getArea() const
 {
    return 3.1415926f * mRadius * mRadius;
 }
 
-float Circle::getMomentPerMass()
+float Circle::getMomentPerMass() const
 {
    return mRadius * mRadius / 2;
 }
 
-Shape::BoundingBox Circle::getBoundingBox(Transform& transform)
+Shape::BoundingBox Circle::getBoundingBox(const Transform& transform) const
 {
    Shape::BoundingBox boundary;
    boundary.lowerLeft.set(-mRadius, -mRadius);
@@ -55,12 +55,12 @@ Shape::BoundingBox Circle::getBoundingBox(Transform& transform)
    boundary.upperRight += transform.getTranslation();
    return boundary;
 }
-Vec2f Circle::getSupport(Vec2f& direction, Transform& transform)
+Vec2f Circle::getSupport(const Vec2f& direction, const Transform& transform) const
 {
    return (direction/direction.getMagnitude()) * mRadius;
 }
 
-Shape::ShapeType Circle::getType()
+Shape::ShapeType Circle::getType() const
 {
    return Shape::CIRCLE;
 }

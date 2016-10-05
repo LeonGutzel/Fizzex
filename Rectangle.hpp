@@ -56,12 +56,12 @@ public:
    Rectangle();
 
    //The rest of the methods are overrides. Documentation is inherited.
-   float getRadius();
-   float getArea();
-   float getMomentPerMass();
-   BoundingBox getBoundingBox(Transform& transform);
-   Vec2f getSupport(Vec2f& direction, Transform& transform);
-   Shape::ShapeType getType();
+   float getRadius() const;
+   float getArea() const;
+   float getMomentPerMass() const;
+   BoundingBox getBoundingBox(const Transform& transform) const;
+   Vec2f getSupport(const Vec2f& direction, const Transform& transform) const;
+   Shape::ShapeType getType() const;
 };
 
 }

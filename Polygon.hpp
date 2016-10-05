@@ -64,12 +64,12 @@ public:
    Polygon();
 
    //The rest of the methods are overrides. Documentation is inherited.
-   Shape::BoundingBox getBoundingBox(Transform& transform);
-   float getRadius();
-   float getArea();
-   float getMomentPerMass();
-   Vec2f getSupport(Vec2f& direction, Transform& transform);
-   Shape::ShapeType getType();
+   float getRadius() const;
+   float getArea() const;
+   float getMomentPerMass() const;
+   Shape::BoundingBox getBoundingBox(const Transform& transform) const;
+   Vec2f getSupport(const Vec2f& direction, const Transform& transform) const;
+   Shape::ShapeType getType() const;
 };
 
 }

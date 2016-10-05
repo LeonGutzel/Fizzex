@@ -88,7 +88,7 @@ public:
     *
     * @return A Vec2f that is the translation of this Transform.
     */
-   Vec2f& getTranslation();
+   Vec2f getTranslation() const;
 
    /**
     * Returns the angle that this Transform is rotated by.

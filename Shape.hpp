@@ -71,7 +71,7 @@ public:
 	 *
 	 * @return A float representing the area of the Shape.
 	 */
-	virtual float getArea() = 0;
+	virtual float getArea() const = 0;
 
 	/**
 	 * Returns the moment of inertia per mass for a given Shape. It assumes that
@@ -79,7 +79,7 @@ public:
 	 *
 	 * @return A float representing the moment of inertia per mass.
 	 */
-	virtual float getMomentPerMass() = 0;
+	virtual float getMomentPerMass() const = 0;
 
 	/**
 	 * Returns an axis-aligned bound box that completely sorrounds the Shape.
@@ -88,7 +88,7 @@ public:
 	 * BoundingBox is generated.
 	 * @return A BoundingBox that completely sorrounds the shape.
 	 */
-	virtual BoundingBox getBoundingBox(Transform& transform) = 0;
+	virtual BoundingBox getBoundingBox(const Transform& transform) const = 0;
 
 	/**
 	 * Returns the nearest vertex of the shape in the direction of the parameter.
@@ -101,14 +101,14 @@ public:
 	 * is a circle, then it will return a vector from the center to the
 	 * circumference with the direction of the parameter.
 	 */
-	virtual Vec2f getSupport(Vec2f& direction, Transform& transform) = 0;
+	virtual Vec2f getSupport(const Vec2f& direction, const Transform& transform) const = 0;
 
 	/**
 	 * Returns the ShapeType of the Shape.
 	 *
 	 * @return The ShapeType of the Shape.
 	 */
-	virtual ShapeType getType() = 0;
+	virtual ShapeType getType() const = 0;
 };
 
 }

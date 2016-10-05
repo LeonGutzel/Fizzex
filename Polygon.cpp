@@ -40,7 +40,7 @@ Polygon::Polygon()
    mVertices.push_back(Vec2f(-1, 2));
 }
 
-float Polygon::getRadius()
+float Polygon::getRadius() const
 {
    float largestSquareMagnitude = 0;
    for (Vec2f vector : mVertices)
@@ -49,7 +49,7 @@ float Polygon::getRadius()
    return std::sqrt(largestSquareMagnitude);
 }
 
-float Polygon::getArea()
+float Polygon::getArea() const
 {
    float area = 0;
 
@@ -62,7 +62,7 @@ float Polygon::getArea()
    return area / 2;
 }
 
-float Polygon::getMomentPerMass()
+float Polygon::getMomentPerMass() const
 {
    float moment = 0;
 
@@ -99,7 +99,7 @@ float Polygon::getMomentPerMass()
    return moment;
 }
 
-Shape::BoundingBox Polygon::getBoundingBox(Transform& transform)
+Shape::BoundingBox Polygon::getBoundingBox(const Transform& transform) const
 {
    BoundingBox boundry;
    for (Vec2f vertex : mVertices)
@@ -113,7 +113,7 @@ Shape::BoundingBox Polygon::getBoundingBox(Transform& transform)
    return boundry;
 }
 
-Vec2f Polygon::getSupport(Vec2f& direction, Transform& transform)
+Vec2f Polygon::getSupport(const Vec2f& direction, const Transform& transform) const
 {
    Vec2f support = transform.apply(mVertices[0]);
    float largestDirectionMeasure = support * direction;
@@ -133,7 +133,7 @@ Vec2f Polygon::getSupport(Vec2f& direction, Transform& transform)
    return support;
 }
 
-Shape::ShapeType Polygon::getType()
+Shape::ShapeType Polygon::getType() const
 {
    return Shape::POLYGON;
 }

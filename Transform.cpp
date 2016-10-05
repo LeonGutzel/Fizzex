@@ -47,7 +47,7 @@ Mat22f Transform::getRotationMatrix() const
    return mRotationMatrix;
 }
 
-Vec2f& Transform::getTranslation()
+Vec2f Transform::getTranslation() const
 {
    return mTranslation;
 }

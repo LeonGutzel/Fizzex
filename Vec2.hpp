@@ -245,7 +245,7 @@ struct Vec2
 	 *
 	 * @return A real representing the magnitude of this vector.
 	 */
-	T getMagnitude()
+	T getMagnitude() const
 	{
 		return std::sqrt(getMagnitudeSquared());
 	}

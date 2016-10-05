@@ -33,7 +33,7 @@ void Body::calculateMassData()
 void Body::step(float dt)
 {
    mVelocity += mForce * (mMassData.inverseMass * dt);
-   mTransform.getTranslation() += mVelocity * dt;
+   mTransform.translate(mVelocity * dt);
    mAngularVelocity += mTorque * (mMassData.inverseInertia * dt);
    mTransform.rotate(mAngularVelocity * dt);
 }
