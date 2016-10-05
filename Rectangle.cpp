@@ -49,7 +49,7 @@ Shape::BoundingBox Rectangle::getBoundingBox(Transform& transform)
    Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
    Vec2f lowerRight = Vec2f(mWidth / 2, -mHeight / 2);
 
-   //Apply the transform, but remove the translation so only rotation and scale is left.
+   //Apply the transform, but remove the translation so only rotation is left.
    upperRight = transform.apply(upperRight) - transform.getTranslation();
    lowerRight = transform.apply(lowerRight) - transform.getTranslation();
 
@@ -66,7 +66,7 @@ Vec2f Rectangle::getSupport(Vec2f& direction, Transform& transform)
    Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
    Vec2f lowerRight = Vec2f(mWidth / 2, -mHeight / 2);
 
-   //Apply the transform, but remove the translation so only rotation and scale is left.
+   //Apply the transform, but remove the translation so only rotation is left.
 	upperRight = transform.apply(upperRight) - transform.getTranslation();
 	lowerRight = transform.apply(lowerRight) - transform.getTranslation();
 

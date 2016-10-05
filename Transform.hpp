@@ -41,20 +41,19 @@ private:
    Mat22f mRotationMatrix; ///< The matrix that represents an objects rotation.
    Vec2f mTranslation; ///< The vector that represents an objects translation.
    float mAngle; ///< The angle that the object is rotated by counterclockwise.
-   float mScale; ///< The amount the object is scaled by in size.
 public:
 
    /**
     * Creates a neutral transformation.
     *
-    * The angle and translation is set to zero, and the scale is set to 1.
+    * The angle and translation is set to zero.
     */
-   Transform() : mRotationMatrix(0), mTranslation(0, 0), mAngle(0), mScale(1) {}
+   Transform() : mRotationMatrix(0), mTranslation(0, 0), mAngle(0) {}
 
    /**
     * Applies this transformation to a vector.
     *
-    * A new vector with the same values as the parameter is scaled, rotated,
+    * A new vector with the same values as the parameter is rotated
     * and then shifted based on the values in this Transform.
     *
     * @param  vector The Vec2f to be transformed.
@@ -78,13 +77,6 @@ public:
    void rotate(float delta);
 
    /**
-    * Scales the transformation to a new scale.
-    *
-    * @param scale A float that represents the amount to scale by.
-    */
-   void scale(float scale);
-
-   /**
     * Returns a Mat22f that is the rotation matrix of this Transform's angle.
     *
     * @return A Mat22f that is the rotation matrix of this Transform's angle.
@@ -106,24 +98,11 @@ public:
    float getRotation();
 
    /**
-    * The scale that this Transform is set to.
-    * @return A float that is this Transform's scale.
-    */
-   float getScale();
-
-   /**
     * Set's this Transform's angle to a specific value.
     *
     * @param theta A float that represents the new value of the rotation angle.
     */
    void setRotation(float theta);
-
-   /**
-    * Set's this Transform's scale factor to a specific value.
-    *
-    * @param scale A float that is the new scale factor of this Transform.
-    */
-   void setScale(float scale);
 
    /**
     * Set the translation of this Transform to a specific value.

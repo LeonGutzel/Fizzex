@@ -78,10 +78,11 @@ Shape::BoundingBox Polygon::getBoundingBox(Transform& transform)
 
 Vec2f Polygon::getSupport(Vec2f& direction, Transform& transform)
 {
-   Vec2f support = mVertices[0];
+   Vec2f support = transform.apply(mVertices[0]);
    float largestDirectionMeasure = support * direction;
 
    for (Vec2f vertex : mVertices) {
+      vertex = transform.apply(vertex);
       float directionMeasure = vertex * direction;
       directionMeasure /= vertex.getMagnitude() * direction.getMagnitude();
 

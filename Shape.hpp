@@ -87,8 +87,8 @@ public:
 	 *
 	 * @param direction A Vec2f that represents the direction the vertex should
 	 * be near to.
-	 * @param transform A Transform that is used to rotate and scale the shape
-	 * to the desired. basis.
+	 * @param transform A Transform that is used to rotate the shape
+	 * to the desired basis.
 	 * @return The closes vertex in the direction of the parameter. If the shape
 	 * is a circle, then it will return a vector from the center to the
 	 * circumference with the direction of the parameter.

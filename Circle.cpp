@@ -45,7 +45,6 @@ Shape::BoundingBox Circle::getBoundingBox(Transform& transform)
 {
    Shape::BoundingBox boundary;
    boundary.lowerLeft.set(-mRadius, -mRadius);
-   boundary.lowerLeft *= transform.getScale();
    boundary.upperRight = boundary.lowerLeft * -1;
    boundary.lowerLeft += transform.getTranslation();
    boundary.upperRight += transform.getTranslation();
@@ -53,7 +52,7 @@ Shape::BoundingBox Circle::getBoundingBox(Transform& transform)
 }
 Vec2f Circle::getSupport(Vec2f& direction, Transform& transform)
 {
-   return (direction/direction.getMagnitude()) * mRadius * transform.getScale();
+   return (direction/direction.getMagnitude()) * mRadius;
 }
 
 Shape::ShapeType Circle::getType()
