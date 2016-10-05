@@ -100,7 +100,7 @@ public:
 	 * @param matrix The matrix that will be added to this instance.
 	 * @return A new matrix that is the sum of this and the paramter.
 	 */
-	Mat22 operator+(Mat22& matrix)
+	Mat22 operator+(const Mat22& matrix) const
 	{
 		return Mat22(mLeftColumn + matrix.mLeftColumn,
 							mRightColumn + matrix.mRightColumn);
@@ -115,7 +115,7 @@ public:
 	 * @param matrix The matrix that will be subtracted from this instance.
 	 * @return A new matrix that is the difference of this and the paramter.
 	 */
-	Mat22 operator-(Mat22 &matrix)
+	Mat22 operator-(const Mat22 &matrix) const
 	{
 		return Mat22(mLeftColumn - matrix.mLeftColumn,
 							mRightColumn - matrix.mRightColumn);
@@ -127,7 +127,7 @@ public:
 	 * @param s The real that will scale this matrix.
 	 * @return A new matrix that represents this instance scaled by s.
 	 */
-	Mat22 operator*(T s)
+	Mat22 operator*(T s) const
 	{
 		return Mat22(mLeftColumn * s, mRightColumn * s);
 	}
@@ -139,7 +139,7 @@ public:
 	 * exception if s is 0.
 	 * @return A new matrix that is this inversly scaled by s.
 	 */
-	Mat22 operator/(T s)
+	Mat22 operator/(T s) const
 	{
 		return Mat22(mLeftColumn / s, mRightColumn / s);
 	}
@@ -150,7 +150,7 @@ public:
 	 * @param matrix The matrix that will be added to this instance.
 	 * @return A reference to this instance.
 	 */
-	Mat22& operator+=(Mat22 &matrix)
+	Mat22& operator+=(const Mat22 &matrix)
 	{
 		mLeftColumn += matrix.mLeftColumn;
 		mRightColumn += matrix.mRightColumn;
@@ -163,7 +163,7 @@ public:
 	 * @param matrix The matrix that will be subtracted from this instance.
 	 * @return A reference to this instance.
 	 */
-	Mat22& operator-=(Mat22 &matrix)
+	Mat22& operator-=(const Mat22 &matrix)
 	{
 		mLeftColumn -= matrix.mLeftColumn;
 		mRightColumn -= matrix.mRightColumn;
@@ -204,7 +204,7 @@ public:
 	 * @return A new matrix that represents the product of this matrix and the
 	 * parameter.
 	 */
-	Mat22 operator*(Mat22 &matrix)
+	Mat22 operator*(const Mat22 &matrix) const
 	{
 		Mat22 output;
 		output.mLeftColumn.x = mLeftColumn.x * matrix.mLeftColumn.x +
@@ -224,7 +224,7 @@ public:
 	 * @param vector The vector to be multiplied to this matrix.
 	 * @return The product of this matrix and the parameter.
 	 */
-	Vec2<T> operator*(Vec2<T>& vector)
+	Vec2<T> operator*(const Vec2<T>& vector) const
 	{
 		Vec2<T> output;
 		output.x = mLeftColumn.x * vector.x +
@@ -238,7 +238,7 @@ public:
 	 * Returns the determinant of this matrix.
 	 * @return A real that represents the determinant of this matrix.
 	 */
-	T getDeterminant()
+	T getDeterminant() const
 	{
 		return mLeftColumn.x * mRightColumn.y - mRightColumn.x * mLeftColumn.y;
 	}
@@ -247,7 +247,7 @@ public:
 	 * Returns the inverse of this matrix.
 	 * @return A new matrix that is the inverse of this instance.
 	 */
-	Mat22 getInverse()
+	Mat22 getInverse() const
 	{
 		Mat22 output;
 		output.mLeftColumn.x = mRightColumn.y;

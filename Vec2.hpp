@@ -69,7 +69,7 @@ struct Vec2
 	 * instance.
 	 * @return A new vector that is the sum of this instance and the parameter.
 	 */
-	Vec2<T> operator+(Vec2<T>& vector)
+	Vec2<T> operator+(const Vec2<T>& vector) const
 	{
 		return Vec2<T>(this->x + vector.x, this->y + vector.y);
 	}
@@ -84,7 +84,7 @@ struct Vec2
 	 * this instance.
 	 * @return A new vector that is the sum of this instance and the parameter.
 	 */
-	Vec2<T> operator-(Vec2<T>& vector)
+	Vec2<T> operator-(const Vec2<T>& vector) const
 	{
 		return Vec2<T>(this->x - vector.x, this->y - vector.y);
 	}
@@ -97,7 +97,7 @@ struct Vec2
 	 * @param s The scale that will be applied to this vector.
 	 * @return A new vector that is this vector scaled by the parameter.
 	 */
-	Vec2<T> operator*(T s)
+	Vec2<T> operator*(T s) const
 	{
 		return Vec2<T>(this->x * s, this->y * s);
 	}
@@ -111,7 +111,7 @@ struct Vec2
 	 * exception will be thrown.
 	 * @return A new vector that is this vector inversly scaled by the parameter.
 	 */
-	Vec2<T> operator/(T s)
+	Vec2<T> operator/(T s) const
 	{
 		return Vec2<T>(this->x / s, this->y / s);
 	}
@@ -126,7 +126,7 @@ struct Vec2
 	 * instance.
 	 * @return A reference to this instance.
 	 */
-	Vec2<T>& operator+=(Vec2<T> &vector)
+	Vec2<T>& operator+=(const Vec2<T>& vector)
 	{
 		this->x += vector.x;
 		this->y += vector.y;
@@ -143,7 +143,7 @@ struct Vec2
 	 * this instance.
 	 * @return A reference to this instance.
 	 */
-	Vec2<T>& operator-=(Vec2<T> &vector)
+	Vec2<T>& operator-=(const Vec2<T> &vector)
 	{
 		this->x -= vector.x;
 		this->y -= vector.y;
@@ -189,7 +189,7 @@ struct Vec2
 	 * instance.
 	 * @return A real representing the dot product.
 	 */
-	T operator*(Vec2<T> &vector)
+	T operator*(const Vec2<T> &vector) const
 	{
 		return this->x * vector.x + this->y * vector.y;
 	}
@@ -206,7 +206,7 @@ struct Vec2
 	 * instance.
 	 * @return The real that represents the cross product between the two.
 	 */
-	T operator%(Vec2<T> &vector)
+	T operator%(const Vec2<T> &vector) const
 	{
 		return this->x * vector.y - vector.x * this->y;
 	}
@@ -235,7 +235,7 @@ struct Vec2
 	 * @see getMagnitudeS()
 	 * @return A real representing the square magnitude of the vector.
 	 */
-	T getMagnitudeSquared()
+	T getMagnitudeSquared() const
 	{
 		return this->x * this->x + this->y * this->y;
 	}
@@ -258,7 +258,8 @@ struct Vec2
 	 *
 	 * @return A real representing the direction in radians.
 	 */
-	T getDirection() {
+	T getDirection()  const
+	{
 		return std::atan2(y, x);
 	}
 };
