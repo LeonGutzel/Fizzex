@@ -57,6 +57,8 @@ public:
 
    //The rest of the methods are overrides. Documentation is inherited.
    float getRadius() const;
+   float getWidth() const;
+   float getHeight() const;
    float getArea() const;
    float getInertiaPerMass() const;
    BoundingBox getBoundingBox(const Transform& transform) const;

@@ -39,6 +39,16 @@ float Rectangle::getRadius() const
    return std::sqrt(mWidth * mWidth + mHeight * mHeight) / 2;
 }
 
+float Rectangle::getWidth() const
+{
+   return mWidth;
+}
+
+float Rectangle::getHeight() const
+{
+   return mHeight;
+}
+
 float Rectangle::getArea() const
 {
    return mWidth * mHeight;
