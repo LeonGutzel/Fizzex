@@ -120,28 +120,177 @@ public:
 	 */
 	~RigidBody();
 
+	/**
+	 * Update the velocity, angular velocity, position, and angle given a
+	 * displacement in time.
+	 *
+	 * @param dt A float that is a displacement in time.
+	 */
 	void step(float dt);
 
+	/**
+	 * Pushes the RigidBody with a certain ForceType
+	 *
+	 * Applies a "push" to the RigidBody. This push has a dfferent effect
+	 * depending on the ForceType parameter. See the description of ForceType
+	 * for more detail. By default, MOMENTUM is used.
+	 *
+	 * @param push	A Vec2f that represents the push.
+	 * @param forceType The type of "force" to use.
+	 */
 	void applyPush(const Vec2f& push, ForceType forceType = MOMENTUM);
+
+	/**
+	 * Twists the RigidBody with a certain ForceType
+	 *
+	 * Applies a "twist" to the RigidBody. This push has a dfferent effect
+	 * depending on the ForceType parameter. See the description of ForceType
+	 * for more detail. By default, MOMENTUM is used.
+	 *
+	 * @param twist A float that is the amount of twist.
+	 * @param forceType The type of "force" to use.
+	 */
 	void applyTwist(float twist, ForceType forceType = MOMENTUM);
+
+	/**
+	 * Get's the amount of "push" on the RigidBody.
+	 *
+	 * The "push" that is returned depends on the ForceType put in. See the
+	 * description of ForceType for more detail. By default, MOMENTUM is used.
+	 *
+	 * @param  forceType The type of push to be measured.
+	 * @return A Vec2f that is the amount of "push" on the object.
+	 */
 	Vec2f getPush(ForceType forceType = MOMENTUM) const;
+
+	/**
+	 * Get's the amount of "twist" on the RigidBody.
+	 *
+	 * The "twist" that is returned depends on the ForceType put in. See the
+	 * description of ForceType for more detail. By default, MOMENTUM is used.
+	 *
+	 * @param  forceType The type of twist to be measured.
+	 * @return A float that us the amount of "twist" on the object.
+	 */
 	float getTwist(ForceType forceType = MOMENTUM) const;
+
+	/**
+	 * Sets the amount of "push" on the RigidBody.
+	 *
+	 * Sets the "push" on the RigidBody. This push has a dfferent effect
+	 * depending on the ForceType parameter. See the description of ForceType
+	 * for more detail. By default, MOMENTUM is used.
+	 *
+	 * @param push	A Vec2f that represents the push.
+	 * @param forceType The type of "force" to use.
+	 */
 	void setPush(const Vec2f& push, ForceType forceType = MOMENTUM);
+
+	/**
+	 * Sets the twist of the RigidBody with a certain ForceType
+	 *
+	 * Sets the "twist" of the RigidBody. This push has a dfferent effect
+	 * depending on the ForceType parameter. See the description of ForceType
+	 * for more detail. By default, MOMENTUM is used.
+	 *
+	 * @param twist A float that is the amount of twist.
+	 * @param forceType The type of "force" to use.
+	 */
 	void setTwist(float twist, ForceType forceType = MOMENTUM);
 
+	/**
+	 * Returns the BodyType of this RigidBody.
+	 *
+	 * See the BodyType documentation for more details.
+	 *
+	 * @return The BodyType of the RigidBody
+	 */
 	BodyType getType() const;
+
+	/**
+	 * Returns the MassData of this RigidBody.
+	 *
+	 * @return The MassData of this RigidBody
+	 */
 	MassData getMassData() const;
+
+	/**
+	 * Returns the Material of this RigidBody
+	 *
+	 * @return The Material of this RigidBody
+	 */
 	Material getMaterial() const;
+
+	/**
+	 * Returns a reference to this RigidBody's Transform.
+	 *
+	 * @return A reference to this RigidBody's Transform
+	 */
 	Transform& getTransform();
+
+	/**
+	 * Returns a reference to this RigidBody's Shape.
+	 *
+	 * @return A reference to this RigidBody's Shape.
+	 */
 	Shape& getShape();
+
+	/**
+	 * Returns the layer this RigidBody is on.
+	 *
+	 * @return An int which is the layer this RigidBody is on.
+	 */
 	int getLayer() const;
 
+	/**
+	 * Set's this RigidBody's type.
+	 *
+	 * See BodyType's documentation for more detial.
+	 *
+	 * @param type They BodyType this RigidBody wil lbe set to.
+	 */
 	void setBodyType(BodyType type);
+
+	/**
+	 * Set's this RigidBody's material.
+	 *
+	 * @param material The Material that will compose this RigidBody.
+	 */
 	void setMaterial(Material material);
+
+	/**
+	 * Set's this RigidBody's layer.
+	 *
+	 * @param layer The int layer of this RigidBody.
+	 */
 	void setLayer(int layer);
 
+	/**
+	 * Set's this RigidBody's Shape to a Circle with a given radius.
+	 *
+	 * See Circle for more details.
+	 *
+	 * @param radius The float radius of this new Circle.
+	 */
 	void setShapeToCircle(float radius);
+
+	/**
+	 * Set's this RigidBody's Shape to a Rectangle with given dimensions..
+	 *
+	 * See Rectangle for more details.
+	 *
+	 * @param width The float width of this new Rectangle
+	 * @param height The float height of this new Rectangle
+	 */
 	void setShapeToRectangle(float width, float height);
+
+	/**
+	 * Set's this RigidBody's Shape to a Polygon with a given vertices.
+	 *
+	 * See Polygon for more details.
+	 *
+	 * @param vertices The Vec2f vertices of this new Polygon.
+	 */
 	void setShapeToPolygon(std::vector<Vec2f> vertices);
 };
 
