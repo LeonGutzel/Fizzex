@@ -260,7 +260,7 @@ struct Vec2
 	 */
 	T getDirection()  const
 	{
-		return std::atan2(y, x);
+		return std::atan2(y, x) + 3.1415926f;
 	}
 };
 

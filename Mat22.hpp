@@ -253,7 +253,7 @@ public:
 		output.mLeftColumn.x = mRightColumn.y;
 		output.mRightColumn.y = mLeftColumn.x;
 		output.mLeftColumn.y = -mLeftColumn.y;
-		output.mRightColumn.x = -mRightColumn.y;
+		output.mRightColumn.x = -mRightColumn.x;
 		return output / getDeterminant();
 	}
 };
