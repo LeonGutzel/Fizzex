@@ -81,14 +81,14 @@ public:
     *
     * @return A Mat22f that is the rotation matrix of this Transform's angle.
     */
-   Mat22f getRotationMatrix() const;
+   const Mat22f& getRotationMatrix() const;
 
    /**
     * Returns a Vec2f that is the translation of this Transform.
     *
     * @return A Vec2f that is the translation of this Transform.
     */
-   Vec2f getTranslation() const;
+   const Vec2f& getTranslation() const;
 
    /**
     * Returns the angle that this Transform is rotated by.

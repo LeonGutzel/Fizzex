@@ -6,8 +6,9 @@
 namespace fzx
 {
 
-RigidBody::RigidBody()
+RigidBody::RigidBody(std::string name)
 {
+   mName = name;
    mBodyType = DYNAMIC;
    mMaterial = Material{1, 0, 0, 1};
    mShape = new Circle(1);
@@ -93,12 +94,12 @@ RigidBody::BodyType RigidBody::getType() const
    return mBodyType;
 }
 
-RigidBody::MassData RigidBody::getMassData() const
+const RigidBody::MassData& RigidBody::getMassData() const
 {
    return mMassData;
 }
 
-RigidBody::Material RigidBody::getMaterial() const
+const RigidBody::Material& RigidBody::getMaterial() const
 {
    return mMaterial;
 }
@@ -108,9 +109,14 @@ Transform& RigidBody::getTransform()
    return mTransform;
 }
 
-Shape& RigidBody::getShape()
+const Shape& RigidBody::getShape()
 {
    return *mShape;
+}
+
+const std::string& RigidBody::getName()
+{
+   return mName;
 }
 
 int RigidBody::getLayer() const
@@ -127,6 +133,11 @@ void RigidBody::setMaterial(Material material)
 {
    mMaterial = material;
    calculateMassData();
+}
+
+void RigidBody::setName(std::string name)
+{
+   mName = name;
 }
 
 void RigidBody::setLayer(int layer)

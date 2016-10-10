@@ -62,18 +62,16 @@ float Rectangle::getInertiaPerMass() const
 Shape::BoundingBox Rectangle::getBoundingBox(const Transform& transform) const
 {
    Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
-   Vec2f lowerRight = Vec2f(mWidth / 2, -mHeight / 2);
+   Vec2f lowerLeft = Vec2f(-mWidth / 2, -mHeight / 2);
 
-   //Apply the transform, but remove the translation so only rotation is left.
-   upperRight = transform.apply(upperRight) - transform.getTranslation();
-   lowerRight = transform.apply(lowerRight) - transform.getTranslation();
-
-   float maximumX = std::max(std::abs(upperRight.x), std::abs(lowerRight.x));
-   float maximumY = std::max(std::abs(upperRight.y), std::abs(lowerRight.y));
+   upperRight = transform.apply(upperRight);
+   lowerLeft = transform.apply(lowerLeft);
 
    Shape::BoundingBox boundary;
-   boundary.upperRight.set(maximumX, maximumY);
-   boundary.lowerLeft = boundary.upperRight * -1;
+   boundary.upperRight.x = std::max(upperRight.x, lowerLeft.x);
+   boundary.upperRight.y = std::max(upperRight.y, lowerLeft.y);
+   boundary.lowerLeft.x = std::min(upperRight.x, lowerLeft.x);
+   boundary.lowerLeft.y = std::min(upperRight.y, lowerLeft.y);
    return boundary;
 }
 

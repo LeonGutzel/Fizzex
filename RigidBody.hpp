@@ -27,6 +27,7 @@
 #define RIGID_BODY_HPP
 
 #include <vector>
+#include <string>
 
 #include "Shape.hpp"
 #include "Circle.hpp"
@@ -83,12 +84,12 @@ public:
 	{
 		float mass, inverseMass, inertia, inverseInertia;
 	};
-
 private:
 	BodyType mBodyType; ///< The Type of the RigidBody
 	MassData mMassData; ///< Data on the RigidBody's mass and inertia.
 	Material mMaterial; ///< The material that composes the RigidBody.
 	Shape* mShape; ///< The Shape of the RigidBody
+	std::string mName;
 	Transform mTransform; ///< The geometrical transformation of the RigidBody.
 	Vec2f mVelocity; ///< The translational velocity of the RigidBody.
 	Vec2f mForce; ///< The constant force on the RigidBody.
@@ -102,7 +103,7 @@ private:
 	void calculateMassData();
 public:
 	/**
-	 * Creates a RigidBody at the origin.
+	 * Creates a RigidBody at the origin with a given name.
 	 *
 	 * The RigidBody has a Circle shape of radius 1.
 	 * The material is set so that it has a density of 1 and no friction.
@@ -110,8 +111,10 @@ public:
 	 * It's put at the origin with no rotation.
 	 * It has no velocity or forces acting on it.
 	 * It is on layer 0.
+	 *
+	 * @param The RigidBody's std::string name.
 	 */
-	RigidBody();
+	RigidBody(std::string name);
 
 	/**
 	 * Destroys the RigidBody.
@@ -212,14 +215,14 @@ public:
 	 *
 	 * @return The MassData of this RigidBody
 	 */
-	MassData getMassData() const;
+	const MassData& getMassData() const;
 
 	/**
 	 * Returns the Material of this RigidBody
 	 *
 	 * @return The Material of this RigidBody
 	 */
-	Material getMaterial() const;
+	const Material& getMaterial() const;
 
 	/**
 	 * Returns a reference to this RigidBody's Transform.
@@ -233,7 +236,14 @@ public:
 	 *
 	 * @return A reference to this RigidBody's Shape.
 	 */
-	Shape& getShape();
+	const Shape& getShape();
+
+	/**
+	 * Returns the name of the RigidBody
+	 *
+	 * @return The std::string name of the RigidBody.
+	 */
+	const std::string& getName();
 
 	/**
 	 * Returns the layer this RigidBody is on.
@@ -264,6 +274,13 @@ public:
 	 * @param layer The int layer of this RigidBody.
 	 */
 	void setLayer(int layer);
+
+	/**
+	 * Set's the name of the RigidBody.
+	 *
+	 * @param name The new name of the RigidBody
+	 */
+	void setName(std::string name);
 
 	/**
 	 * Set's this RigidBody's Shape to a Circle with a given radius.

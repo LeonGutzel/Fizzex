@@ -55,6 +55,7 @@ Shape::BoundingBox Circle::getBoundingBox(const Transform& transform) const
    boundary.upperRight += transform.getTranslation();
    return boundary;
 }
+
 Vec2f Circle::getSupport(const Vec2f& direction, const Transform& transform) const
 {
    return (direction/direction.getMagnitude()) * mRadius;

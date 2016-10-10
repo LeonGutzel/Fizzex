@@ -42,12 +42,12 @@ void Transform::rotate(float delta)
    mRotationMatrix = Mat22f(mAngle);
 }
 
-Mat22f Transform::getRotationMatrix() const
+const Mat22f& Transform::getRotationMatrix() const
 {
    return mRotationMatrix;
 }
 
-Vec2f Transform::getTranslation() const
+const Vec2f& Transform::getTranslation() const
 {
    return mTranslation;
 }
