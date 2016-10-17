@@ -31,6 +31,8 @@ Polygon::Polygon(std::vector<Vec2f> vertices)
    for (Vec2f vector : mVertices) sum += vector;
    sum /= mVertices.size();
    for (Vec2f vector : mVertices) vector -= sum;
+
+   calculateNormals();
 }
 
 Polygon::Polygon()
@@ -38,6 +40,23 @@ Polygon::Polygon()
    mVertices.push_back(Vec2f(-1, -1));
    mVertices.push_back(Vec2f(2, -1));
    mVertices.push_back(Vec2f(-1, 2));
+
+   calculateNormals();
+}
+
+void Polygon::calculateNormals()
+{
+   for (unsigned i = 0; i < mVertices.size(); i++)
+   {
+      Vec2f vertixA, vertixB;
+      vertixA = mVertices[i];
+      if (i == mVertices.size() - 1) vertixB = mVertices[0];
+      else vertixB = mVertices[i+1];
+
+      Vec2f aToB = vertixB - vertixA;
+      Vec2f normal = Vec2f(aToB.y, -aToB.x);
+      mNormals.push_back(normal / normal.getMagnitude());
+   }
 }
 
 float Polygon::getRadius() const
@@ -62,9 +81,14 @@ float Polygon::getArea() const
    return area / 2;
 }
 
-Vec2f Polygon::getVertix(unsigned int index) const
+const Vec2f& Polygon::getVertix(unsigned index) const
 {
    return mVertices[index];
+}
+
+const Vec2f& Polygon::getNormal(unsigned index) const
+{
+   return mNormals[index];
 }
 
 unsigned int Polygon::getNumberOfVertices() const

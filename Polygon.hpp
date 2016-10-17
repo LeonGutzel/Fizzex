@@ -39,6 +39,12 @@ class Polygon : public Shape
 {
 private:
    std::vector<Vec2f> mVertices; ///< The vertices of the shape in counterclockwise order.
+   std::vector<Vec2f> mNormals; ///< The normals of all the sides.
+
+   /**
+    * Calculates the normals of the sides.
+    */
+   void calculateNormals();
 public:
    /**
     * Creates a Polygon with the given vertices.
@@ -71,12 +77,23 @@ public:
    unsigned getNumberOfVertices() const;
 
    /**
-    * A specific vertic in the Polygon.
+    * A specific vertix in the Polygon.
     *
     * @param  index The index of the vertix desired.
-    * @return A Vec2f that is the desired vertix of the Polygon.
+    * @return The desired vertix of the Polygon.
     */
-   Vec2f getVertix(unsigned int index) const;
+   const Vec2f& getVertix(unsigned int index) const;
+
+   /**
+    * The normal of a side in of the polygon.
+    *
+    * The sides are index starting at the first vertix going counterclockwise.
+    * The normal points into the shape.
+    *
+    * @param index The index of the normal desired.
+    * @param The desired normal of the polygon.
+    */
+   const Vec2f& getNormal(unsigned int index) const;
 
    //The rest of the methods are overrides. Documentation is inherited.
    float getRadius() const;
