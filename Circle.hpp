@@ -53,7 +53,7 @@ public:
     */
    Circle();
 
-   void setRadius(float radius);
+   void setRadius(float radius); 
 
    //The rest of the methods are overrides. Documentation is inherited.
    float getRadius() const;
