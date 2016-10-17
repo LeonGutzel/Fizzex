@@ -61,17 +61,21 @@ float Rectangle::getInertiaPerMass() const
 
 Shape::BoundingBox Rectangle::getBoundingBox(const Transform& transform) const
 {
-   Vec2f upperRight = Vec2f(mWidth / 2, mHeight / 2);
-   Vec2f lowerLeft = Vec2f(-mWidth / 2, -mHeight / 2);
+   Vec2f UR = Vec2f(mWidth / 2, mHeight / 2);
+   Vec2f LL = Vec2f(-mWidth / 2, -mHeight / 2);
+   Vec2f UL = Vec2f(-mWidth / 2, mHeight / 2);
+   Vec2f LR = Vec2f(mWidth / 2, -mHeight / 2);
 
-   upperRight = transform.apply(upperRight);
-   lowerLeft = transform.apply(lowerLeft);
+   UR = transform.apply(UR);
+   UL = transform.apply(UL);
+   LR = transform.apply(LR);
+   LL = transform.apply(LL);
 
    Shape::BoundingBox boundary;
-   boundary.upperRight.x = std::max(upperRight.x, lowerLeft.x);
-   boundary.upperRight.y = std::max(upperRight.y, lowerLeft.y);
-   boundary.lowerLeft.x = std::min(upperRight.x, lowerLeft.x);
-   boundary.lowerLeft.y = std::min(upperRight.y, lowerLeft.y);
+   boundary.upperRight.x = std::max({UR.x, UL.x, LL.x, LR.x});
+   boundary.upperRight.y = std::max({UR.y, UL.y, LL.y, LR.y});
+   boundary.lowerLeft.x = std::min({UR.x, UL.x, LL.x, LR.x});
+   boundary.lowerLeft.y = std::min({UR.y, UL.y, LL.y, LR.y});
    return boundary;
 }
 

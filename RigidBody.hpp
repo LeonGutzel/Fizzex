@@ -35,10 +35,13 @@
 
 namespace fzx {
 
+class World;
+
 /**
  * A class that represents a rigid body in 2D space.
  */
 class RigidBody {
+friend class World;
 public:
 	/**
 	 * The type of RigidBody.
@@ -96,6 +99,7 @@ private:
 	float mAngularVelocity; ///< The rotational velocity of the RigidBody.
 	float mTorque; ///< The Torque of the RigidBody.
 	int mLayer; ///< The layer the RigidBody resides on.
+	bool mIsSleeping;
 
 	/**
 	 * Calculates the data for the MassData strucutre.
@@ -124,13 +128,11 @@ public:
 	~RigidBody();
 
 	/**
-	 * Update the velocity, angular velocity, position, and angle given a
-	 * displacement in time.
-	 *
-	 * @param dt A float that is a displacement in time.
+	 * Checks whether the RigidBody is slow enough to sleep.
+	 * 
+	 * @return Whether or not the RigidBody can sleep.
 	 */
-	void step(float dt);
-
+	bool canSleep();
 	/**
 	 * Pushes the RigidBody with a certain ForceType
 	 *
@@ -154,6 +156,11 @@ public:
 	 * @param forceType The type of "force" to use.
 	 */
 	void applyTwist(float twist, ForceType forceType = MOMENTUM);
+
+	/**
+	 * Stet's the velocity, angular velocity, and the force to zero.
+	 */
+	void stop();
 
 	/**
 	 * Get's the amount of "push" on the RigidBody.
@@ -253,6 +260,13 @@ public:
 	int getLayer() const;
 
 	/**
+	 * Check if the object is asleep.
+	 *
+	 * @return Whether the object is awake or not.
+	 */
+	bool isSleeping() const;
+
+	/**
 	 * Set's this RigidBody's type.
 	 *
 	 * See BodyType's documentation for more detial.
@@ -281,6 +295,13 @@ public:
 	 * @param name The new name of the RigidBody
 	 */
 	void setName(std::string name);
+
+	/**
+	 * Set the objects sleeping status.
+	 *
+	 * @param isSleeping The new status of sleep.
+	 */
+	void setSleeping(bool isSleeping);
 
 	/**
 	 * Set's this RigidBody's Shape to a Circle with a given radius.

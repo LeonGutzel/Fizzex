@@ -2,6 +2,7 @@
 #include "Circle.hpp"
 #include "Rectangle.hpp"
 #include "Polygon.hpp"
+#include "Settings.hpp"
 
 namespace fzx
 {
@@ -15,6 +16,7 @@ RigidBody::RigidBody(std::string name)
    mAngularVelocity = 0;
    mTorque = 0;
    mLayer = 0;
+   mIsSleeping= false;
    calculateMassData();
 }
 RigidBody::~RigidBody()
@@ -33,28 +35,40 @@ void RigidBody::calculateMassData()
    else mMassData.inverseInertia = 1 / mMassData.inertia;
 }
 
-void RigidBody::step(float dt)
+bool RigidBody::canSleep()
 {
-   mVelocity += mForce * (mMassData.inverseMass * dt);
-   mTransform.translate(mVelocity * dt);
-   mAngularVelocity += mTorque * (mMassData.inverseInertia * dt);
-   mTransform.rotate(mAngularVelocity * dt);
+   return (mVelocity * mVelocity < MINIMUM_VELOCITY_FOR_AWAKING * MINIMUM_VELOCITY_FOR_AWAKING)
+            && (std::abs(mAngularVelocity) < MINIMUM_ANGULAR_VELOCITY_FOR_AWAKING);
 }
 
 void RigidBody::applyPush(const Vec2f& push, RigidBody::ForceType forceType)
 {
+   if (mBodyType == STATIC) return;
    if (forceType == RigidBody::VELOCITY) mVelocity += push;
    if (forceType == RigidBody::ACCELERATION) mForce += push * mMassData.mass;
    if (forceType == RigidBody::MOMENTUM) mVelocity += push * mMassData.inverseMass;
    if (forceType == RigidBody::FORCE) mForce += push;
+   if (mIsSleeping && canSleep()) mVelocity = Vec2f(0, 0);
+   if (!canSleep()) mIsSleeping = false;
 }
 
 void RigidBody::applyTwist(float twist, RigidBody::ForceType forceType)
 {
+   if (mBodyType == STATIC) return;
    if (forceType == RigidBody::VELOCITY) mAngularVelocity += twist;
    if (forceType == RigidBody::ACCELERATION) mTorque += twist * mMassData.inertia;
    if (forceType == RigidBody::MOMENTUM) mAngularVelocity += twist * mMassData.inverseInertia;
    if (forceType == RigidBody::FORCE) mTorque += twist;
+   if (mIsSleeping && canSleep()) mAngularVelocity = 0;
+   if (!canSleep()) mIsSleeping = false;
+}
+
+void RigidBody::stop()
+{
+   mVelocity = Vec2f(0, 0);
+   mAngularVelocity = 0;
+   mForce = Vec2f(0, 0);
+   mIsSleeping = true;
 }
 
 Vec2f RigidBody::getPush(ForceType forceType) const
@@ -75,18 +89,22 @@ float RigidBody::getTwist(ForceType forceType) const
 
 void RigidBody::setPush(const Vec2f& push, ForceType forceType)
 {
+   if (mBodyType == STATIC) return;
    if (forceType == RigidBody::VELOCITY) mVelocity = push;
    if (forceType == RigidBody::ACCELERATION) mForce = push * mMassData.mass;
    if (forceType == RigidBody::MOMENTUM) mVelocity = push * mMassData.inverseMass;
    if (forceType == RigidBody::FORCE) mForce = push;
+   mIsSleeping = false;
 }
 
 void RigidBody::setTwist(float twist, ForceType forceType)
 {
+   if (mBodyType == STATIC) return;
    if (forceType == RigidBody::VELOCITY) mAngularVelocity = twist;
    if (forceType == RigidBody::ACCELERATION) mTorque = twist * mMassData.inertia;
    if (forceType == RigidBody::MOMENTUM) mAngularVelocity = twist * mMassData.inverseInertia;
    if (forceType == RigidBody::FORCE) mTorque = twist;
+   mIsSleeping = false;
 }
 
 RigidBody::BodyType RigidBody::getType() const
@@ -124,9 +142,15 @@ int RigidBody::getLayer() const
    return mLayer;
 }
 
+bool RigidBody::isSleeping() const
+{
+   return mIsSleeping;
+}
+
 void RigidBody::setBodyType(BodyType type)
 {
    mBodyType = type;
+   if (mBodyType == STATIC) stop();
 }
 
 void RigidBody::setMaterial(Material material)
@@ -143,6 +167,11 @@ void RigidBody::setName(std::string name)
 void RigidBody::setLayer(int layer)
 {
    mLayer = layer;
+}
+
+void RigidBody::setSleeping(bool isSleeping)
+{
+   mIsSleeping = isSleeping;
 }
 
 void RigidBody::setShapeToCircle(float radius)
