@@ -33,7 +33,7 @@ Circle::Circle() : mRadius(1.0f) {}
 
 void Circle::setRadius(float radius)
 {
-   mRadius = radius;
+   mRadius = radius; 
 }
 
 float Circle::getRadius() const
