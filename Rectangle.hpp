@@ -69,6 +69,20 @@ public:
     */
    float getHeight() const;
 
+   /**
+    * Set the width of the Rectangle
+    *
+    * @param width The width of the Rectangle
+    */
+   void setWidth(float width);
+
+   /**
+    * Set the height of the Rectangle
+    *
+    * @param height The height of the Rectangle
+    */
+   void setHeight(float height);
+
    //The rest of the methods are overrides. Documentation is inherited.
    float getRadius() const;
    float getArea() const;

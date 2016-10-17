@@ -49,6 +49,16 @@ float Rectangle::getHeight() const
    return mHeight;
 }
 
+void Rectangle::setWidth(float width)
+{
+   mWidth = width;
+}
+
+void Rectangle::setHeight(float height)
+{
+   mHeight = height;
+}
+
 float Rectangle::getArea() const
 {
    return mWidth * mHeight;
