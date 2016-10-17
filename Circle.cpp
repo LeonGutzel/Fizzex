@@ -31,6 +31,11 @@ namespace fzx
 Circle::Circle(float radius) : mRadius(radius) {}
 Circle::Circle() : mRadius(1.0f) {}
 
+void Circle::setRadius(float radius)
+{
+   mRadius = radius;
+}
+
 float Circle::getRadius() const
 {
    return mRadius;
